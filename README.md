@@ -12,7 +12,7 @@
 # API Documentation 💻
 ## 1. Register 
 ```http
-  POST /api/v1/register
+POST /api/v1/register
 ```
 | Parameter | Type     | Description                                        |
 | :-------- | :------- | :-----------------------------------------------   |
@@ -49,7 +49,7 @@
 
 ## 2. Login 
 ```http
-  POST /api/v1/login
+POST /api/v1/login
 ```
 | Parameter | Type     | Description                        |
 | :-------- | :------- | :--------------------------------  |
@@ -83,7 +83,7 @@
 
 ## 3. Show All Course 
 ```http
-  GET /api/v1/courses
+GET /api/v1/courses
 ```
 ### Request Header
 |Key        | Value                                                       | Description                       |
@@ -119,7 +119,7 @@
 
 ## 4. Add Course 
 ```http
- POST /api/v1/courses/create
+POST /api/v1/courses/create
 ```
 | Parameter   | Type         | Description                                       |
 | :---------- | :----------- | :------------------------------------------------ |
@@ -303,7 +303,7 @@ GET /api/v1/course-details
 ```
 ## 7. Add Course Detail
 ```http
- POST /api/v1/course-details/create
+POST /api/v1/course-details/create
 ```
 | Parameter         | Type      | Description                                       |
 | :---------------- | :-------- | :------------------------------------------------ |
@@ -417,7 +417,7 @@ GET /api/v1/course-details
 
 ## 7. Add Course Detail
 ```http
- PATCH /api/v1/course-details/:cd_id/edit
+PATCH /api/v1/course-details/:cd_id/edit
 ```
 | Parameter         | Type      | Description                                             |
 | :---------------- | :-------- | :------------------------------------------------------ |
