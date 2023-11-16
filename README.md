@@ -94,7 +94,7 @@
 #### 200 OK
 ```json
 {
-    "data": [{
+    "data": {
         "succes": true,
         "massage": "Menampilkan Data Course",
         "code": [
