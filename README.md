@@ -97,7 +97,8 @@
     "data": [{
         "succes": true,
         "massage": "Menampilkan Data Course",
-        "code": {
+        "code": [
+            {
                 "id": 1,
                 "code": "Rebor-001",
                 "user_id": 1,
@@ -105,7 +106,8 @@
                 "end_time": "2023-04-10 00:00:00",
                 "created_at": "2023-11-09T19:46:58.000000Z",
                 "updated_at": "2023-11-16T18:35:02.000000Z"
-        }]
+            }
+        ]
 }
 ```
 #### 401 UNAUTHORIZED
