@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CourseDetailController extends Controller
 {
-  public function index()
+    public function index()
     {
         $exerciseDetails = CourseDetail::all();
 
@@ -39,7 +39,11 @@ class CourseDetailController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json($validator->errors(), 422);
+                return response()->json([
+                    'status'=> false,
+                    'message'=> 'Gagal menambahkan Data',
+                    'errors'=> $validator->errors()
+                ],400);
             }
 
             CourseDetail::create([
@@ -58,5 +62,38 @@ class CourseDetailController extends Controller
         }
 
         return new APIResource(true, 'Menampilkan Detail Data', $datas);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $datas = $request->data;
+        
+        foreach ($datas as $data) {
+            $validator = Validator::make($data, [
+                'course_id' => 'required',
+                'duration' => 'required',
+                'position' => 'required',
+                'vout' => 'required',
+                'dorsimax' => 'required',
+                'plantarmax' => 'required',
+                'rom' => 'required',
+                'percentage' => 'required',
+                'step_amount' => 'required',
+                'step_duration' => 'required',
+                'step_per_second' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status'=> false,
+                    'message'=> 'Gagal mengedit Data',
+                    'errors'=> $validator->errors()
+                ],400);
+            }
+
+            $detail = CourseDetail::findOrFail($id);
+            $detail->update($request->all());
+            return new APIResource(true, 'Data Berhasil Diedit', $detail);
+        }
     }
 }
