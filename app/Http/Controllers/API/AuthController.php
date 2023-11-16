@@ -28,7 +28,7 @@ class AuthController extends Controller
                 "status"=> false,
                 "message"=> "Proses Login Gagal",
                 'data' => $validator->errors()->first(),
-            ],401); 
+            ],400); 
         }
 
         $user = User::where('email', $request->email)->first();
@@ -37,7 +37,7 @@ class AuthController extends Controller
             return response()->json([
                 'status'=> false,
                 'message'=> 'Email atau Password Tidak Sesuai'
-            ],401);
+            ],400);
         }
 
         $token = $user ->createToken('user_token')->plainTextToken;
@@ -63,7 +63,7 @@ class AuthController extends Controller
                 'status' => false,
                 'message' => 'Proses Validasi Gagal',
                 'data' => $validator->errors()->first(),
-            ], 401);
+            ], 400);
         }
             $datauser->name = $request->name;
             $datauser->email = $request->email;

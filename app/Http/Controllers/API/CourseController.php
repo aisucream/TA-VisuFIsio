@@ -34,7 +34,7 @@ class CourseController extends Controller
                 'status' => false,
                 'message' => 'Gagal Memasukan Data',
                 'errors'=> $validator->errors()
-            ],422);  
+            ],400);  
         }
 
      
@@ -46,4 +46,29 @@ class CourseController extends Controller
         $post = $dataLatihan->save();
         return new APIResource(true, 'Data Berhasil Ditambahkan', $dataLatihan);
     }
+
+    public function update(Request $request, $id){
+       
+
+        $rules = [
+            'code' => 'required',
+            'start_time' => 'date',
+            'end_time'=> 'date',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()){
+            return response()->json([
+                'status'=> false,
+                'message'=> 'Gagal mengedit Data',
+                'errors'=> $validator->errors()
+            ],400);
+        }
+
+        $course = Course::findOrFail($id);
+        $course->update($request->all());
+        return new APIResource(true, 'Data Berhasil Diedit', $course);
+
+    }
+
 }
