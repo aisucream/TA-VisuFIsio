@@ -1,66 +1,551 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Dokumentasi 🧑🏻‍💻
+![Logo](https://github.com/aisucream/TA-VisuFIsio/assets/87255839/d3608bbb-b576-48a2-ae9a-b5e3b6c57ca2)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## User Interfaces
 
-## About Laravel
+#### UI Login : 
+![UI Login](https://github.com/aisucream/TA-VisuFIsio/assets/87255839/0e855f0d-cf92-4523-8799-3947af426eaf)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+#### UI Hasil Latihan :
+![UI Dashboard](https://github.com/aisucream/TA-VisuFIsio/assets/87255839/8ee9505b-dd1e-4e36-90b5-878e5993fc69)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# API Documentation 💻
+## 1. Register 
+```http
+  POST /api/v1/register
+```
+| Parameter | Type     | Description                                        |
+| :-------- | :------- | :-----------------------------------------------   |
+| `name`    | `string` | **Required**. Name `example:Jhon Doe`              |
+| `email`   | `string` | **Required**. Email `example:jhondhoe@example.com` |
+| `password`| `string` | **Required**. Password `example:jhondoe123`        |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### **Body** (JSON Content)
+```json
+{
+    "name":"Arcadius Obaja",
+    "email":"arcadiusobaja@example.com",
+    "password":"bajaobaja123"
+}
+```
 
-## Learning Laravel
+### Response
+#### 200 OK
+```json 
+{
+    "status": true,
+    "message": "User Berhasil Didaftarkan"
+}
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### 400 BAD REQUEST
+```json
+{
+    "status": false,
+    "message": "Proses Validasi Gagal",
+    "data": "The email has already been taken."
+}
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 2. Login 
+```http
+  POST /api/v1/login
+```
+| Parameter | Type     | Description                        |
+| :-------- | :------- | :--------------------------------  |
+| `email`   | `string` | **Required**. Registered Email     |
+| `password`| `string` | **Required**. Registered Password  |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### **Body** (JSON Content)
+```json
+{
+    "email": "arcadiusobaja@example.com",
+    "password": "bajaobaja123"
+}
+```
+### Response
+#### 200 OK
+```json
+{
+    "status": true,
+    "massage": "Berhasil Login",
+    "token": "4|Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547"
+}
+```
 
-## Laravel Sponsors
+#### 400 BAD REQUEST
+```json
+{
+    "status": false,
+    "message": "Email atau Password Tidak Sesuai"
+}
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 3. Show All Course 
+```http
+  GET /api/v1/courses
+```
+### Request Header
+|Key        | Value                                                       | Description                       |
+| :-------- | :---------------------------------------------------------- | :-------------------------------- |
+| `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
 
-### Premium Partners
+### Response
+#### 200 OK
+```json
+{
+    "data": [{
+        "succes": true,
+        "massage": "Menampilkan Data Course",
+        "code": {
+                "id": 1,
+                "code": "Rebor-001",
+                "user_id": 1,
+                "start_time": "2023-04-10 00:00:00",
+                "end_time": "2023-04-10 00:00:00",
+                "created_at": "2023-11-09T19:46:58.000000Z",
+                "updated_at": "2023-11-16T18:35:02.000000Z"
+        }]
+}
+```
+#### 401 UNAUTHORIZED
+```json
+{
+    "message": "Unauthenticated."
+}
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 4. Add Course 
+```http
+ POST /api/v1/courses/create
+```
+| Parameter   | Type         | Description                                       |
+| :---------- | :----------- | :------------------------------------------------ |
+| `code`      | `string`     | **Required**. Course Code                         |
+| `start_time`| `datetime`   | **Nullable**. `example:2023-06-07 10:28:00`       |
+| `end_time`  | `datetime`   | **Nullable**. `example:2023-06-07 10:30:00`       |
 
-## Contributing
+### Request Header
+|Key        | Value                                                       | Description                       |
+| :-------- | :---------------------------------------------------------- | :-------------------------------- |
+| `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### **Body** (JSON Content)
+```json
+{
+    "code":"Rebot-010",
+    "start_time": "2023/04/06 10:29:00",
+    "end_time": "2023/04/06 10:30:00"
+}
+```
 
-## Code of Conduct
+### Response
+#### 200 OK
+```json
+{
+        "data": {
+        "succes": true,
+        "massage": "Data Berhasil Ditambahkan",
+        "code": {
+            "code": "Rebot-006",
+            "user_id": 1,
+            "start_time": "2023/04/06 10:29:00",
+            "end_time": "2023/04/06 10:30:00",
+            "updated_at": "2023-11-16T22:16:37.000000Z",
+            "created_at": "2023-11-16T22:16:37.000000Z",
+            "id": 10
+        }
+    }
+}
+```
+#### 400 BAD REQUEST
+```json
+{
+    "status": false,
+    "message": "Gagal Memasukan Data",
+    "errors": {
+        "code": [
+            "The code field is required."
+        ],
+        "start_time": [
+            "The start time field must be a valid date."
+        ]
+    }
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### 401 UNAUTHORIZED
+```json
+{
+    "message": "Unauthenticated."
+}
+```
 
-## Security Vulnerabilities
+## 5. Edit Course 
+```http
+  PATCH /api/v1/courses/:c_id/edit
+```
+| Parameter   | Type           | Description                                       |
+| :---------- | :-----------   | :------------------------------------------------ |
+| `c_id`      | `interger`     | **Required**. Course's data id                    |
+| `code`      | `string`       | **Required**. Course Code                         |
+| `start_time`| `datetime`     | **Nullable**. `example:2023-06-07 10:28:00`       |
+| `end_time`  | `datetime`     | **Nullable**. `example:2023-06-07 10:30:00`       |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Example of use :** `PATCH /api/v1/courses/10/edit`
 
-## License
+### Request Header
+|Key        | Value                                                       | Description                       |
+| :-------- | :---------------------------------------------------------- | :-------------------------------- |
+| `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### **Body** (JSON Content)
+```json
+{
+    "code":"Rebot-010",
+    "start_time": "2023/04/06 10:31:00",
+    "end_time": "2023/04/06 10:39:00"
+}
+```
+### Response
+#### 200 OK
+```json
+{
+    "data": {
+        "succes": true,
+        "massage": "Data Berhasil Diedit",
+        "code": {
+            "id": 10,
+            "code": "Rebot-007",
+            "user_id": 1,
+            "start_time": "2023/04/06 10:40:20",
+            "end_time": "2023/04/06 10:40:00",
+            "created_at": "2023-11-16T22:04:29.000000Z",
+            "updated_at": "2023-11-16T22:18:11.000000Z"
+        }
+    }
+}
+```
+#### 400 BAD REQUEST
+```json
+{
+    "status": false,
+    "message": "Gagal mengedit Data",
+    "errors": {
+        "code": [
+            "The code field is required."
+        ],
+        "start_time": [
+            "The start time field must be a valid date."
+        ]
+    }
+}
+```
+
+#### 401 UNAUTHORIZED
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+
+#### 404 NOT FOUND
+```json
+{
+    "status": false,
+    "message": "ID Latihan tidak ditemukan"
+}
+```
+
+## 6. Show All Course Detail
+```http
+GET /api/v1/course-details
+```
+### Request Header
+|Key        | Value                                                       | Description                       |
+| :-------- | :---------------------------------------------------------- | :-------------------------------- |
+| `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
+
+### Response
+#### 200 OK
+```json
+{
+    "succes": true,
+    "massage": "List Data Exercise Details",
+    "data": [
+        {
+            "id": 6,
+            "course_id": 5,
+            "duration": 120,
+            "position": 0.04,
+            "vout": -0.87,
+            "dorsimax": 0.36,
+            "plantarmax": -0.010000000000000009,
+            "rom": 0.37,
+            "percentage": 95,
+            "step_amount": 60,
+            "step_duration": 1.2,
+            "step_per_second": 0.83,
+            "created_at": "2023-11-16T22:38:23.000000Z",
+            "updated_at": "2023-11-16T22:38:23.000000Z"
+        }
+    ]
+}
+```
+```
+#### 401 UNAUTHORIZED
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+## 7. Add Course Detail
+```http
+ POST /api/v1/course-details/create
+```
+| Parameter         | Type      | Description                                       |
+| :---------------- | :-------- | :------------------------------------------------ |
+| `course_id`       | `integer` | **Required**. Id of Course                        |
+| `duration`        | `decimal` | **Required**. Exercise Duration                   |
+| `position`        | `decimal` | **Required**. Ankle Position (P Value)            |
+| `vout`            | `decimal` | **Required**. Ankle Angular Velocity (VOUT Value) |
+| `dorsimax`        | `decimal` | **Required**. Maximum Dorsiflexion                |
+| `plantarmax`      | `decimal` | **Required**. Maximum Plantarflexion              |
+| `rom`             | `decimal` | **Required**. Range of Motion                     |
+| `percentage`      | `decimal` | **Required**. Correct Gait Sequence Percentage    |
+| `step_amount`     | `decimal` | **Required**. Number of Steps                     |
+| `step_duration`   | `decimal` | **Required**. Correct Step Duration               |
+| `step_per_second` | `decimal` | **Required**. Steps Per Second                    |
+
+### Request Header
+|Key        | Value                                                       | Description                       |
+| :-------- | :---------------------------------------------------------- | :-------------------------------- |
+| `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
+
+### **Body** (JSON Content)
+```json
+{
+  "data": [
+        {
+            "course_id":5,
+            "duration": 120,
+            "position": 0.04,
+            "vout": -0.87,
+            "dorsimax": 0.36,
+            "plantarmax": -0.01,
+            "rom": 0.37,
+            "percentage": 95,
+            "step_amount": 60,
+            "step_duration": 1.2,
+            "step_per_second": 0.83
+        },
+        {
+            "course_id":5,
+            "duration": 130,
+            "position": 0.24,
+            "vout": -0.47,
+            "dorsimax": 0.66,
+            "plantarmax": -0.31,
+            "rom": 0.37,
+            "percentage": 65,
+            "step_amount": 80,
+            "step_duration": 2.2,
+            "step_per_second": 5.83
+        }
+    ]
+}
+```
+### Response
+#### 200 OK
+```json
+{
+    "data": {
+        "succes": true,
+        "massage": "Menampilkan Detail Data",
+        "code": [
+            {
+                "course_id": 5,
+                "duration": 120,
+                "position": 0.04,
+                "vout": -0.87,
+                "dorsimax": 0.36,
+                "plantarmax": -0.01,
+                "rom": 0.37,
+                "percentage": 95,
+                "step_amount": 60,
+                "step_duration": 1.2,
+                "step_per_second": 0.83
+            },
+            {
+                "course_id": 5,
+                "duration": 130,
+                "position": 0.24,
+                "vout": -0.47,
+                "dorsimax": 0.66,
+                "plantarmax": -0.31,
+                "rom": 0.37,
+                "percentage": 65,
+                "step_amount": 80,
+                "step_duration": 2.2,
+                "step_per_second": 5.83
+            }
+        ]
+    }
+}
+```
+#### 400 BAD REQUEST
+```json
+{
+    "status": false,
+    "message": "Gagal menambahkan Data",
+    "errors": {
+        "step_per_second": [
+            "The step per second field must be a number."
+        ]
+    }
+}
+```
+
+#### 401 UNAUTHORIZED
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+
+## 7. Add Course Detail
+```http
+ PATCH /api/v1/course-details/:cd_id/edit
+```
+| Parameter         | Type      | Description                                             |
+| :---------------- | :-------- | :------------------------------------------------------ |
+| `cd_id`           | `integer` | **Required**. Course detail's ID                        |
+| `course_id`       | `integer` | **Required**. Id of Course                              |
+| `duration`        | `decimal` | **Required**. Exercise Duration                         |
+| `position`        | `decimal` | **Required**. Ankle Position (P Value)                  |
+| `vout`            | `decimal` | **Required**. Ankle Angular Velocity (VOUT Value)       |
+| `dorsimax`        | `decimal` | **Required**. Maximum Dorsiflexion                      |
+| `plantarmax`      | `decimal` | **Required**. Maximum Plantarflexion                    |
+| `rom`             | `decimal` | **Required**. Range of Motion                           |
+| `percentage`      | `decimal` | **Required**. Correct Gait Sequence Percentage          |
+| `step_amount`     | `decimal` | **Required**. Number of Steps                           |
+| `step_duration`   | `decimal` | **Required**. Correct Step Duration                     |
+| `step_per_second` | `decimal` | **Required**. Steps Per Second                          |
+
+**Example of use :** `PATCH /api/v1/courses/6/edit`
+
+### Request Header
+|Key        | Value                                                       | Description                       |
+| :-------- | :---------------------------------------------------------- | :-------------------------------- |
+| `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
+
+### **Body** (JSON Content)
+```json
+{
+  "data": [
+        {
+            "course_id":5,
+            "duration": 150,
+            "position": 0.04,
+            "vout": -0.87,
+            "dorsimax": 0.36,
+            "plantarmax": 0.3,
+            "rom": 0.37,
+            "percentage": 96,
+            "step_amount": 60,
+            "step_duration": 1,
+            "step_per_second": 0.83
+        }
+    ]
+}
+```
+### Response
+#### 200 OK
+```json
+{
+    "data": {
+        "succes": true,
+        "massage": "Data Berhasil Diedit",
+        "code": {
+            "id": 6,
+            "course_id": 5,
+            "duration": 150,
+            "position": 0.04,
+            "vout": -0.87,
+            "dorsimax": 0.36,
+            "plantarmax": 0.3,
+            "rom": 0.37,
+            "percentage": 96,
+            "step_amount": 60,
+            "step_duration": 1,
+            "step_per_second": 0.83,
+            "created_at": "2023-11-16T22:38:23.000000Z",
+            "updated_at": "2023-11-16T23:08:13.000000Z"
+        }
+    }
+}
+```
+#### 400 BAD REQUEST
+```json
+{
+    "status": false,
+    "message": "Gagal mengedit Data",
+    "errors": {
+        "plantarmax": [
+            "The plantarmax field is required."
+        ],
+        "step_per_second": [
+            "The step per second field must be a number."
+        ]
+    }
+}
+```
+
+#### 401 UNAUTHORIZED
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+
+#### 404 NOT FOUND
+```json
+{
+    "status": false,
+    "message": "ID Detail Latihan tidak ditemukan"
+}
+```
+# Support Creator 🙌🏻
+
+Arcadius Obaja Naarie 
+Code Created at `10/11/2023`
+
+## Social Media
+<a href="https://instagram.com/obaja.n"><img src="https://img.shields.io/badge/instagram-E4405F.svg?style=for-the-badge&logo=instagram&logoColor=white"/></a>
+<a href="https://twitter.com/SyntaxUndefined"><img src="https://img.shields.io/badge/twitter-1DA1F2.svg?style=for-the-badge&logo=twitter&logoColor=white"/></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
