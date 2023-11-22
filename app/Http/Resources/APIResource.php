@@ -9,14 +9,14 @@ class APIResource extends JsonResource
 {
     //Properti JSON
     public $status;
-    public $massage;
+    public $message;
     public $resource;
 
     //Konstraktor parsing untuk controller
-    public function __construct($status,$massage,$resource){
+    public function __construct($status,$message,$resource){
         parent::__construct($resource);
         $this->status = $status;
-        $this->massage = $massage;
+        $this->message = $message;
     }
 
     //untuk Frontend
@@ -24,8 +24,8 @@ class APIResource extends JsonResource
     {
         return [
             'succes' => $this->status,
-            'massage' => $this->massage,
-            'code' => $this->resource
+            'message' => $this->message,
+            'data' => $this->resource
         ];
     }
 }

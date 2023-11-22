@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\User;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -82,4 +84,28 @@ class LoginRequest extends FormRequest
     {
         return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
     }
+
+    public function apiAuth(): void
+    {
+
+        $user = $this->user();
+
+        $abilities = ['web'];
+
+        // Revoke token sebelumnya jika ada
+        $user->tokens()->each(function ($token, $key) {
+            $token->delete();
+        });
+
+        // Buat token baru
+        $token = $user->createToken('web_token');
+
+        // Set abilities dalam record token di tabel personal_access_tokens
+        $token->accessToken->update([
+            'abilities' => $abilities,
+        ]);
+        
+    }
+
+  
 }

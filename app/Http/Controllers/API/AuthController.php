@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -26,24 +25,28 @@ class AuthController extends Controller
         {
             return response()->json([
                 "status"=> false,
-                "message"=> "Proses Login Gagal",
+                "message"=> "Login Process Failed",
                 'data' => $validator->errors()->first(),
             ],400); 
         }
-
+       
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'status'=> false,
-                'message'=> 'Email atau Password Tidak Sesuai'
+                'message'=> 'Email atau Password not match'
             ],400);
         }
 
-        $token = $user ->createToken('user_token')->plainTextToken;
+        $abilities = $request->is('api/*') ? ['mobile'] : ['web'];
+
+        $token = $user ->createToken('user_token', $abilities)->plainTextToken;
+
         return response()->json([
             'status'=> true,
-            'massage' => "Berhasil Login",
+            'message' => "Login Succesfully",
+            'user' => $user,
             'token'=> $token,
         ],200);
     }
@@ -61,8 +64,9 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
-                'message' => 'Proses Validasi Gagal',
+                'message' => 'Validation Process Failed',
                 'data' => $validator->errors()->first(),
+                
             ], 400);
         }
             $datauser->name = $request->name;
@@ -72,7 +76,8 @@ class AuthController extends Controller
 
             return response()->json([
                 'status'=> true,
-                'message'=> 'User Berhasil Didaftarkan',
+                'message'=> 'User Registered Successfully',
+                'data'=> $datauser
             ],200);
     }
 
@@ -82,7 +87,8 @@ class AuthController extends Controller
         
         return response()->json([
             'status'=> true,
-            'message'=> 'Berhasil Logout',
+            'message'=> 'Logout Sucessfuly',
+            'user' => $request->user,
         ],200);
     }
 

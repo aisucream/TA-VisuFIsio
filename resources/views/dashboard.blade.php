@@ -75,6 +75,9 @@
 
                         </tbody>
                     </table>
+                    <div class="my-5 ">
+                        {{ $data->onEachSide(5)->links() }}
+                    </div>
                 </div>
             </div>
         </div>
