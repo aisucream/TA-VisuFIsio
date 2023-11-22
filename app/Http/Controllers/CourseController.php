@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+
 
 class CourseController extends Controller
 {
@@ -13,9 +15,10 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $course = Course::with('user')->get()->sortDesc();
 
-        return view('dashboard', ['data' => $course]);
+    $data = Course::paginate(5);
+
+    return view("dashboard", compact("data"));
     }
 
     /**

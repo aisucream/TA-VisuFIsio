@@ -10,6 +10,6 @@ Route::middleware(['auth:sanctum'])
 ->group(function () {
     Route::get('/', [CourseController::class,'index'])->name('get');
     Route::post('/create', [CourseController::class,'store'])->name('post');
-    Route::patch('/edit/{id}', [CourseController::class,'update'])->name('patch');
+    Route::patch('/{c_id}/edit', [CourseController::class,'update'])->name('patch');
 });
 

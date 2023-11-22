@@ -16,7 +16,7 @@ class CourseController extends Controller
     {
         $dataLatihan = Course::orderby('id', 'asc')->get();
         
-        return new APIResource(true,'Menampilkan Data Course', $dataLatihan);
+        return new CourseResource(true,'Displays Course Data', $dataLatihan);
     }
 
     public function store(Request $request)
@@ -32,7 +32,7 @@ class CourseController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
-                'message' => 'Gagal Memasukan Data',
+                'message' => 'Failed to Enter Data',
                 'errors'=> $validator->errors()
             ],400);  
         }
@@ -44,10 +44,10 @@ class CourseController extends Controller
         $dataLatihan->end_time = $request->end_time;
 
         $post = $dataLatihan->save();
-        return new APIResource(true, 'Data Berhasil Ditambahkan', $dataLatihan);
+        return new CourseResource(true, 'Data Added Successfully', $dataLatihan);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $c_id){
        
 
         $rules = [
@@ -60,14 +60,22 @@ class CourseController extends Controller
         if ($validator->fails()){
             return response()->json([
                 'status'=> false,
-                'message'=> 'Gagal mengedit Data',
+                'message'=> 'Failed to edit Data',
                 'errors'=> $validator->errors()
             ],400);
         }
 
-        $course = Course::findOrFail($id);
+        $course = Course::find($c_id);
+        if (is_null($course)) {
+            return response()->json([
+                'status' => false,
+                'message'=> 'Course ID not found',
+                'course_id' => $c_id
+            ], 404);
+        }
+
         $course->update($request->all());
-        return new APIResource(true, 'Data Berhasil Diedit', $course);
+        return new APIResource(true, 'Data Edited Successfully', $course);
 
     }
 
