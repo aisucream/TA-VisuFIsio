@@ -42,8 +42,10 @@ class LoginRequest extends FormRequest
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
+        $credentials = $this->only('email', 'password');
+        $credentials['type'] = 'web';
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt($credentials, $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -85,27 +87,7 @@ class LoginRequest extends FormRequest
         return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
     }
 
-    public function apiAuth(): void
-    {
 
-        $user = $this->user();
-
-        $abilities = ['web'];
-
-        // Revoke token sebelumnya jika ada
-        $user->tokens()->each(function ($token, $key) {
-            $token->delete();
-        });
-
-        // Buat token baru
-        $token = $user->createToken('web_token');
-
-        // Set abilities dalam record token di tabel personal_access_tokens
-        $token->accessToken->update([
-            'abilities' => $abilities,
-        ]);
-        
-    }
 
   
 }

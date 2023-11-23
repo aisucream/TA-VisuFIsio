@@ -24,13 +24,7 @@ class CourseResource extends JsonResource
         return [
                 'success' => $this->status,
                 'message' => $this->message,
-                'data' => [
-                    'id' => $this->resource->id,
-                    'code' => $this->resource->code,
-                    'patient' => new UserResource($this->resource->user), 
-                    'start_time' => $this->resource->start_time,
-                    'end_time' => $this->resource->end_time,
-                ],
+                'data' =>  $this->resource
             ];
     }
 }
