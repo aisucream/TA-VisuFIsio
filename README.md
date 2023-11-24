@@ -161,7 +161,6 @@ POST /api/v1/courses/create
 #### 200 OK
 ```json
 {
-        "data": {
         "succes": true,
         "massage": "Data Berhasil Ditambahkan",
         "code": {
@@ -173,7 +172,6 @@ POST /api/v1/courses/create
             "created_at": "2023-11-16T22:16:37.000000Z",
             "id": 10
         }
-    }
 }
 ```
 #### 400 BAD REQUEST
@@ -229,7 +227,6 @@ POST /api/v1/courses/create
 #### 200 OK
 ```json
 {
-    "data": {
         "succes": true,
         "massage": "Data Berhasil Diedit",
         "code": {
@@ -241,7 +238,7 @@ POST /api/v1/courses/create
             "created_at": "2023-11-16T22:04:29.000000Z",
             "updated_at": "2023-11-16T22:18:11.000000Z"
         }
-    }
+    
 }
 ```
 #### 400 BAD REQUEST
@@ -289,12 +286,12 @@ GET /api/v1/course-details
 ```json
 {
     "succes": true,
-    "massage": "List Data Exercise Details",
+    "massage": "List Data Course Details",
     "data": [
         {
-            "id": 6,
-            "course_id": 5,
-            "duration": 120,
+            "id": 1,
+            "course_id": 1,
+            "duration": 123,
             "position": 0.04,
             "vout": -0.87,
             "dorsimax": 0.36,
@@ -302,10 +299,26 @@ GET /api/v1/course-details
             "rom": 0.37,
             "percentage": 95,
             "step_amount": 60,
-            "step_duration": 1.2,
-            "step_per_second": 0.83,
-            "created_at": "2023-11-16T22:38:23.000000Z",
-            "updated_at": "2023-11-16T22:38:23.000000Z"
+            "step_duration": 0.1,
+            "step_per_second": 0.2,
+            "created_at": "2023-11-24T01:32:49.000000Z",
+            "updated_at": "2023-11-24T01:32:49.000000Z"
+        },
+        {
+            "id": 2,
+            "course_id": 1,
+            "duration": 120,
+            "position": 0.44,
+            "vout": -0.87,
+            "dorsimax": 0.36,
+            "plantarmax": -0.010000000000000009,
+            "rom": 0.37,
+            "percentage": 95,
+            "step_amount": 60,
+            "step_duration": 0.1,
+            "step_per_second": 0.2,
+            "created_at": "2023-11-24T01:32:49.000000Z",
+            "updated_at": "2023-11-24T01:32:49.000000Z"
         }
     ]
 }
