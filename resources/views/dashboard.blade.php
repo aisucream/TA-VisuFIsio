@@ -19,27 +19,27 @@
                                         <div class="flex items-center space-x-2">
                                             <!-- Detail Button -->
                                             <x-primary-button
-                                                class="lg:inline-block hidden bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800 "
+                                                class="sm:inline-block hidden bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800 "
                                                 title="Detail Latihan" href="#">
                                                 <x-detail-icon></x-detail-icon>Detail
                                             </x-primary-button>
 
                                             <!-- Delete Button -->
                                             <x-primary-button
-                                                class="lg:inline-block hidden bg-red-500 hover:bg-red-700 focus:bg-red-700 active:bg-red-800 "
+                                                class="sm:inline-block hidden bg-red-500 hover:bg-red-700 focus:bg-red-700 active:bg-red-800 "
                                                 title="Delete" href="#">
                                                 <x-delete-icon></x-delete-icon>
                                             </x-primary-button>
 
                                             <!-- Export Button -->
                                             <x-primary-button
-                                                class="lg:inline-block hidden bg-green-500 hover:bg-green-700 focus:bg-green-700 active:bg-green-800 "
+                                                class="sm:inline-block hidden bg-green-500 hover:bg-green-700 focus:bg-green-700 active:bg-green-800 "
                                                 title="Export Data Excel" href="#">
                                                 <x-data-excel-icon></x-data-excel-icon>
                                             </x-primary-button>
 
                                             <!-- Responsive Icons (visible on small screens) -->
-                                            <div class="lg:hidden flex space-x-2">
+                                            <div class="sm:hidden flex space-x-2">
                                                 <a href="#" title="Detail Latihan">
                                                     <x-detail-icon class="text-blue-500"></x-detail-icon>
                                                 </a>
