@@ -3,7 +3,7 @@
 use App\Http\Controllers\API\CourseDetailController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth:sanctum'])
+Route::middleware(['auth:sanctum','akses:mobile'])
 ->prefix('course-details')
 ->name('courseDetail.')
 ->group(function () {

@@ -39,9 +39,14 @@ class AuthController extends Controller
             ],400);
         }
 
-        $abilities = $request->is('api/*') ? ['mobile'] : ['web'];
+        if ($user->type != 'mobile') {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized : User cannot access the API'
+            ], 400);
+        }
 
-        $token = $user ->createToken('user_token', $abilities)->plainTextToken;
+        $token = $user ->createToken('user_token')->plainTextToken;
 
         return response()->json([
             'status'=> true,
