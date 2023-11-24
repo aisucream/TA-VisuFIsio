@@ -23,9 +23,10 @@ POST /api/v1/register
 ### **Body** (JSON Content)
 ```json
 {
-    "name":"Arcadius Obaja",
-    "email":"arcadiusobaja@example.com",
-    "password":"bajaobaja123"
+    "name":"cahyo",
+    "email":"bagus@gmail.com",
+    "password":"slang231",
+    "type":"mobile"
 }
 ```
 
@@ -34,7 +35,14 @@ POST /api/v1/register
 ```json 
 {
     "status": true,
-    "message": "User Berhasil Didaftarkan"
+    "message": "User Registered Successfully",
+    "data": {
+        "name": "cahyo",
+        "email": "bagus@gmail.com",
+        "updated_at": "2023-11-24T01:11:39.000000Z",
+        "created_at": "2023-11-24T01:11:39.000000Z",
+        "id": 3
+    }
 }
 ```
 
@@ -59,8 +67,8 @@ POST /api/v1/login
 ### **Body** (JSON Content)
 ```json
 {
-    "email": "arcadiusobaja@example.com",
-    "password": "bajaobaja123"
+    "email": "baguscahyo@gmail.com",
+    "password": "bagus123"
 }
 ```
 ### Response
@@ -68,8 +76,17 @@ POST /api/v1/login
 ```json
 {
     "status": true,
-    "massage": "Berhasil Login",
-    "token": "4|Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547"
+    "message": "Login Succesfully",
+    "user": {
+        "id": 2,
+        "name": "Bagus Cahyo",
+        "email": "baguscahyo@gmail.com",
+        "email_verified_at": null,
+        "type": "mobile",
+        "created_at": "2023-11-23T14:05:43.000000Z",
+        "updated_at": "2023-11-23T14:05:43.000000Z"
+    },
+    "token": "6|tsnZt9rG6BJVHa6b2FEc5H7MxBbq5MabfQuYl6Vk336b132e"
 }
 ```
 
@@ -94,7 +111,6 @@ GET /api/v1/courses
 #### 200 OK
 ```json
 {
-    "data": {
         "succes": true,
         "massage": "Menampilkan Data Course",
         "code": [
