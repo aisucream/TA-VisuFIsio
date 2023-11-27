@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\CourseDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -42,7 +43,10 @@ class CourseController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $course = Course::findOrFail($id);
+        $courseDetails = CourseDetail::where('course_id', $id)->orderBy('created_at', 'asc')->get();
+
+        return view('admin.courseDetail', compact('course','courseDetails'));
     }
 
     /**
@@ -66,6 +70,10 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+      $course = Course::findOrFail($id);
+
+      $course->delete();
+      return redirect()->route('dashboard');
+
     }
 }

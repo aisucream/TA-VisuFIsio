@@ -1,17 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\UserManagement;
 
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class CourseDetailController extends Controller
+class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data = User::with('userDesc')->paginate(5);
+
+        return view("admin.account", compact("data"));
     }
 
     /**
@@ -35,7 +39,9 @@ class CourseDetailController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::find($id);
+
+        return view("admin.accountDetail", compact("user"));
     }
 
     /**
@@ -59,6 +65,16 @@ class CourseDetailController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        $protectedUserIds = [1, 2]; 
+        
+        if (in_array($user->id, $protectedUserIds)) {
+            return redirect()->route('account')->with('error', 'This user cannot be deleted.');
+        }
+
+        $user->delete();
+
+        return redirect()->route('account')->with('success', 'User deleted successfully.');
+
     }
 }

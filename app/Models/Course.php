@@ -11,7 +11,7 @@ class Course extends Model
 
     protected $fillable = ['code','user_id', 'start_time', 'end_time'];
 
-    public function coursedetail()
+    public function courseDetail()
     {
         return $this->hasMany(CourseDetail::class);
     }

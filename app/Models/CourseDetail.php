@@ -23,7 +23,7 @@ class CourseDetail extends Model
         'step_per_second',
     ];
 
-    public function Course()
+    public function course()
     {
         return $this->belongsTo(Course::class);
     }

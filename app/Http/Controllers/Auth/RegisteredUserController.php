@@ -4,50 +4,59 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+use App\Models\UserDesc;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
-    public function create(): View
+  public function buat()
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request): RedirectResponse
+    public function simpan(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'type' => ['required','string','in:web,mobile'],
+            'type' => ['required','string','in:mobile,web'],
         ]);
 
-        $user = User::create([
+        $pengguna = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'type' => $request->type,
             'password' => Hash::make($request->password),
-            'type'=> $request->type,
         ]);
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('daftar.peran', ['id' => $pengguna->id]);
     }
+
+    public function peran($id)
+    {
+        return view('auth.role', compact('id'));
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $request->validate([
+            'role' => ['required', 'string', 'in:fisioterapis,dokter,admin,pasien'],
+            'no_telp' => ['required', 'string', 'max:14'],
+        ]);
+
+        $pengguna = User::findOrFail($id);
+
+        UserDesc::create([
+            'user_id' => $pengguna->id,
+            'roles' => $request->role,
+            'no_telp' => $request->no_telp,
+        ]);
+
+        return redirect('dashboard');
+    }
+
 }

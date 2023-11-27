@@ -15,8 +15,7 @@ class UserDesc extends Model
         "no_telp",
     ];
 
-    public function Deskripsi()
-    {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 }
