@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('daftar.simpan') }}">
         @csrf
 
         <!-- Name -->
@@ -14,9 +14,8 @@
         <div class="mt-4">
             <x-input-label for="type" :value="__('Type')" />
             <select id="type" name="type" class="block mt-1 w-full p-2 border rounded-md">
-                <option value="web">Web User</option>
                 <option value="mobile">Mobile User</option>
-                <!-- Add more options as needed -->
+                <option value="web">Web User</option>
             </select>
             <x-input-error :messages="$errors->get('type')" class="mt-2" />
         </div>
@@ -49,14 +48,15 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+        <div class="flex items-center justify-end mt-4 ">
+            <x-link class="bg-transparent border-gray-500 hover:border-transparent hover:bg-gray-300 text-black"
+                href="{{ route('account') }}">
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
+                {{ __('Back') }}
+            </x-link>
+
+            <x-primary-button class="ms-4 ">
+                {{ __('Next') }}
             </x-primary-button>
         </div>
     </form>

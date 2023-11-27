@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_descs', function (Blueprint $table) {
             $table->id();
-            $table->foreignID('user_id')->constrained();
+            $table->foreignID('user_id')->constrained() ->onDelete('cascade');;
             $table->enum('roles', ['fisioterapis','dokter', 'admin','pasien'])->default('pasien');
             $table->string('no_telp')->nullable;
             $table->timestamps();

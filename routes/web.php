@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\DescController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserManagement\AccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +17,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/dashboard', [CourseController::class,'index'])->middleware(['auth', 'verified','akses:web'])->name('dashboard');
+Route::middleware(['auth', 'verified','akses:web'])
+->group(function () {
+    Route::get('/dashboard', [CourseController::class,'index'])->name('dashboard');
+    require __DIR__ .'/user/admin/admin.php';
+    require __DIR__ .'/user/auth/course.php';
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

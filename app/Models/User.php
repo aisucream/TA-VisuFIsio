@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -45,12 +46,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function Deskripsi()
-    {
+     public function userDesc() {
         return $this->hasOne(UserDesc::class);
     }
 
-    public function UserCourse()
+    public function userCourse()
     {
         return $this->hasMany(Course::class);
     }
