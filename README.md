@@ -9,6 +9,9 @@
 #### UI Hasil Latihan :
 ![UI Dashboard](https://github.com/aisucream/TA-VisuFIsio/assets/87255839/8ee9505b-dd1e-4e36-90b5-878e5993fc69)
 
+#### UI Detail Latihan :
+![UI Course Detail](https://github.com/aisucream/TA-VisuFIsio/assets/87255839/b1549b96-ac08-4691-b094-7d0a61d7a326)
+
 # API Documentation 💻
 ## 1. Register 
 ```http
