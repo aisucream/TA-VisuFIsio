@@ -138,6 +138,72 @@
                 </div>
             </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-1 gap-3 ">
+                <div class="p-6 bg-white mt-3 rounded-lg">
+                    <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
+                        {{ __('Evaluasi Latihan :') }}
+                    </h2>
+
+                    <x-link class="mb-2 mt-5" href="{{ route('evaluation', ['id' => $course->id]) }}">
+                        <x-plus-icon></x-plus-icon>
+                        {{ __('Create Evaluation') }}
+                    </x-link>
+
+
+                    <table class="min-w-full divide-y divide-gray-200 border mt-5">
+                        <thead>
+                            <tr>
+                                <th class="px-6 py-3 bg-gray-50 text-left">
+                                    <span
+                                        class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Docter</span>
+                                </th>
+                                <th class="px-6 py-3 bg-gray-50 text-left">
+                                    <span
+                                        class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Notes</span>
+                                </th>
+                                <th class="px-6 py-3 bg-gray-50 text-left">
+                                    <span
+                                        class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Description</span>
+                                </th>
+                                <th class="px-6 py-3 bg-gray-50 text-left">
+                                    <span
+                                        class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Status</span>
+                                </th>
+
+                                <th class="px-6 py-3 bg-gray-50 text-left">
+                                    <span
+                                        class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Action</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 divide-solid">
+                            <tr class="bg-white">
+                                @foreach ($course->courseEvaluation as $evaluation)
+                                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
+                                        {{ $evaluation->user->name }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
+                                        {{ $evaluation->notes }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
+                                        {{ $evaluation->description }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
+                                        {{ $evaluation->status }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
+                                        <x-link class="bg-red-500 hover:bg-red-700 focus:bg-red-700 active:bg-red-800">
+                                            <x-delete-icon></x-delete-icon>
+                                        </x-link>
+                                    </td>
+                                @endforeach
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
         </div>
     </div>
 

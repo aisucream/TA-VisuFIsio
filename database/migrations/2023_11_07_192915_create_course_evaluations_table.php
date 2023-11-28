@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignID('user_id')->constrained() ->onDelete('cascade');;
             $table->foreignId('course_id')->constrained();
-            $table->string('nama');
-            $table->string('evaluasi');
+            $table->string('notes');
+            $table->string('description');
+            $table->enum('status', ['Buruk', 'Cukup', 'Baik', 'Sangat Baik'])->nullable();
             $table->timestamps();
         });
     }

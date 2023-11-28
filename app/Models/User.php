@@ -55,7 +55,7 @@ class User extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
-    public function UserEvaluation()
+    public function courseEvaluation()
     {
         return $this->hasMany(CourseEvaluation::class);
     }
