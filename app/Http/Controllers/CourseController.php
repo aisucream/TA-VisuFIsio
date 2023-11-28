@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\CourseDetail;
+use App\Models\CourseEvaluation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -74,6 +75,38 @@ class CourseController extends Controller
 
       $course->delete();
       return redirect()->route('dashboard');
+
+    }
+
+    public function evaluation(string $id){
+
+        $course = Course::findOrFail($id);
+        $user = Auth::user();
+
+        return view('admin.courseEvaluation', compact('course','user'));
+
+    }
+
+        public function evaluationpost(Request $request, $id){
+
+        $request->validate([
+            'notes' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'status' => ['required']
+        ]); 
+
+        $course = Course::findOrFail($id);
+        $user = Auth::user();
+
+        CourseEvaluation::create([
+            'course_id' => $course->id,
+            'user_id' => $user->id,
+            'notes' => $request->notes,
+            'description' => $request->description,
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('course.detail', $course->id);
 
     }
 }

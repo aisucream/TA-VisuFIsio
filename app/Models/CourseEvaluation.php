@@ -12,16 +12,17 @@ class CourseEvaluation extends Model
     protected $fillable = [
         "course_id",
         "user_id",
-        "nama",
-        "evaluasi",
+        "notes",
+        "description",
+        "status",
     ];
 
-    public function Course()
+    public function course()
     {
         return $this->belongsTo(Course::class);
     }
 
-    public function UserEvaluation()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
