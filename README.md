@@ -326,7 +326,7 @@ GET /api/v1/course-details
     ]
 }
 ```
-```
+
 #### 401 UNAUTHORIZED
 ```json
 {
