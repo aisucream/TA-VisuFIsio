@@ -63,6 +63,7 @@ class AuthController extends Controller
             "name"=>"required",
             "email"=> "required|email|unique:users,email",
             "password"=> "required",
+            "type" => "required|in:web,mobile",
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -77,6 +78,7 @@ class AuthController extends Controller
             $datauser->name = $request->name;
             $datauser->email = $request->email;
             $datauser->password = bcrypt($request->password);
+            $datauser->type = $request->type;
             $datauser->save();
 
             return response()->json([
