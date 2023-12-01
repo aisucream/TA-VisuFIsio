@@ -447,7 +447,7 @@ POST /api/v1/course-details/create
 }
 ```
 
-## 7. Add Course Detail
+## 7. Update Course Detail
 ```http
 PATCH /api/v1/course-details/:cd_id/edit
 ```
