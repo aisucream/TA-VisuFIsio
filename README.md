@@ -109,6 +109,7 @@ GET /api/v1/courses
 |Key        | Value                                                       | Description                       |
 | :-------- | :---------------------------------------------------------- | :-------------------------------- |
 | `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
+| `Accept`   | `application/json`  | **Required**.    |
 
 ### Response
 #### 200 OK
@@ -150,6 +151,7 @@ POST /api/v1/courses/create
 |Key        | Value                                                       | Description                       |
 | :-------- | :---------------------------------------------------------- | :-------------------------------- |
 | `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
+| `Accept`   | `application/json`  | **Required**.    |
 
 ### **Body** (JSON Content)
 ```json
@@ -217,6 +219,7 @@ POST /api/v1/courses/create
 |Key        | Value                                                       | Description                       |
 | :-------- | :---------------------------------------------------------- | :-------------------------------- |
 | `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
+| `Accept`   | `application/json`  | **Required**.    |
 
 ### **Body** (JSON Content)
 ```json
@@ -283,6 +286,7 @@ GET /api/v1/course-details
 |Key        | Value                                                       | Description                       |
 | :-------- | :---------------------------------------------------------- | :-------------------------------- |
 | `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
+| `Accept`   | `application/json`  | **Required**.    |
 
 ### Response
 #### 200 OK
@@ -355,6 +359,7 @@ POST /api/v1/course-details/create
 |Key        | Value                                                       | Description                       |
 | :-------- | :---------------------------------------------------------- | :-------------------------------- |
 | `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
+| `Accept`   | `application/json`  | **Required**.    |
 
 ### **Body** (JSON Content)
 ```json
@@ -472,6 +477,7 @@ PATCH /api/v1/course-details/:cd_id/edit
 |Key        | Value                                                       | Description                       |
 | :-------- | :---------------------------------------------------------- | :-------------------------------- |
 | `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
+| `Accept`   | `application/json`  | **Required**.    |
 
 ### **Body** (JSON Content)
 ```json
