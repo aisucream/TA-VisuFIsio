@@ -52,6 +52,11 @@
 
 
         </div>
+        <x-link class=" bg-gray-400  hover:bg-gray-500 text-black"
+            href="{{ route('course.detail', ['id' => $course->id]) }}">
+
+            {{ __('Back') }}
+        </x-link>
 
         <x-primary-button class="mt-4 ">
             {{ __('Simpan') }}

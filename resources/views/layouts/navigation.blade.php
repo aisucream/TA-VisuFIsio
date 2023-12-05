@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 ">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+    <div class="max-w-10xl mx-auto px-8 sm:px-6 lg:px-10">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -21,7 +21,6 @@
                             {{ __('Kelola Akun') }}
                         </x-nav-link>
                     @endif
-
                 </div>
             </div>
 
@@ -85,6 +84,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if (auth()->user()->userDesc->roles == 'admin')
+                <x-responsive-nav-link :href="route('account')" :active="request()->routeIs('account')">
+                    {{ __('Kelola Akun') }}
+                </x-responsive-nav-link>
+            @endif
+
         </div>
 
         <!-- Responsive Settings Options -->
