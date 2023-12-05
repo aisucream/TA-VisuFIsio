@@ -8,8 +8,9 @@
     <div class="py-12">
         <div class="max-w-10xl mx-auto py-6 px-4 sm:px-10 lg:px-10">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg lg:rounded-lg">
-                <div class="p-6 text-gray-900 ">
-                    <x-link class="mb-5 px-5" href="{{ route('daftar') }}">
+                <div class="p-6 text-gray-900  ">
+                    <x-link class="my-4 px-5 bg-green-500 hover:bg-green-600 focus:bg-green-700 active:bg-green-700"
+                        href="{{ route('daftar') }}">
                         <x-plus-icon></x-plus-icon>
                         {{ __('Create Account') }}
                     </x-link>
@@ -70,12 +71,12 @@
                                         @endif
 
                                         <td
-                                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900 flex justify-start items-center">
+                                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900 grid grid-cols-2 gap-3">
 
                                             <x-link
-                                                class="bg-green-500 hover:bg-green-700 focus:bg-green-700 active:bg-green-800 mr-8 sm:mr-6 lg:mr-8  "
+                                                class="bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800  "
                                                 title="Detail" href="{{ route('account.show', ['id' => $item->id]) }}">
-                                                <x-detail-icon></x-detail-icon>
+                                                <x-detail-icon> </x-detail-icon> Detail
                                             </x-link>
 
                                             <form action="{{ route('account.delete', ['id' => $item->id]) }}"
@@ -84,7 +85,7 @@
                                                 @method('delete')
 
                                                 <x-primary-button
-                                                    class="bg-red-500 hover:bg-red-700 focus:bg-red-700 active:bg-red-800 mr-8 sm:mr-6 lg:mr-8 ">
+                                                    class="bg-red-500 hover:bg-red-700 focus:bg-red-700 active:bg-red-800 ">
                                                     <x-delete-icon></x-delete-icon>
                                                 </x-primary-button>
                                             </form>

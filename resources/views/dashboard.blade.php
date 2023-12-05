@@ -52,18 +52,20 @@
                                             {{ $item->user->name }}
                                         </td>
                                         <td
-                                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900 flex justify-start items-start flex-wrap">
+                                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900 grid grid-cols-2 gap-3">
+
 
                                             <x-link
-                                                class="bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800 mr-8 sm:mr-6 lg:mr-8"
+                                                class="bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800 "
                                                 title="Detail Latihan"
                                                 href="{{ route('course.detail', ['id' => $item->id]) }}">
-                                                <x-detail-icon></x-detail-icon>Detail
+                                                <x-detail-icon></x-detail-icon> Detail
                                             </x-link>
+
 
                                             @if (auth()->user()->userDesc->roles !== 'pasien')
                                                 <form action="{{ route('course.delete', ['id' => $item->id]) }}"
-                                                    method="post" class="mr-8 sm:mr-6 lg:mr-8">
+                                                    method="post">
                                                     @csrf
                                                     @method('delete')
 
