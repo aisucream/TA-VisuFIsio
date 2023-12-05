@@ -55,7 +55,7 @@
                                             class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900 flex justify-start items-start flex-wrap">
 
                                             <x-link
-                                                class="bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800 sm:mr-2 lg:mr-5 "
+                                                class="bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800 sm:mr-6 lg:mr-8 "
                                                 title="Detail Latihan"
                                                 href="{{ route('course.detail', ['id' => $item->id]) }}">
                                                 <x-detail-icon></x-detail-icon>Detail
