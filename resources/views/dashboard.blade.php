@@ -52,7 +52,7 @@
                                             {{ $item->user->name }}
                                         </td>
                                         <td
-                                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900  grid grid-cols-2 gap-3">
+                                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900 grid grid-cols-2 gap-3">
 
 
                                             <x-link
