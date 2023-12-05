@@ -49,8 +49,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-4 ">
-            <x-link class="bg-transparent border-gray-500 hover:border-transparent hover:bg-gray-300 text-black"
-                href="{{ route('account') }}">
+            <x-link class=" bg-gray-400  hover:bg-gray-500 text-black" href="{{ route('account') }}">
 
                 {{ __('Back') }}
             </x-link>

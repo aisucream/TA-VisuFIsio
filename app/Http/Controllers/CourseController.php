@@ -109,4 +109,14 @@ class CourseController extends Controller
         return redirect()->route('course.detail', $course->id);
 
     }
+
+    public function evaluationdelete(string $id){
+
+        $evaluate = CourseEvaluation::findOrFail($id);
+
+        $evaluate->delete();
+
+        return redirect()->route('course.detail',['id' => $evaluate->course_id]);
+
+    }
 }
