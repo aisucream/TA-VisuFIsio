@@ -73,7 +73,7 @@
                                             class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900 flex justify-start items-center">
 
                                             <x-link
-                                                class="bg-green-500 hover:bg-green-700 focus:bg-green-700 active:bg-green-800 sm:mr-6 lg:mr-8  "
+                                                class="bg-green-500 hover:bg-green-700 focus:bg-green-700 active:bg-green-800 mr-8 sm:mr-6 lg:mr-8  "
                                                 title="Detail" href="{{ route('account.show', ['id' => $item->id]) }}">
                                                 <x-detail-icon></x-detail-icon>
                                             </x-link>
@@ -84,7 +84,7 @@
                                                 @method('delete')
 
                                                 <x-primary-button
-                                                    class="bg-red-500 hover:bg-red-700 focus:bg-red-700 active:bg-red-800 sm:mr-6 lg:mr-8 ">
+                                                    class="bg-red-500 hover:bg-red-700 focus:bg-red-700 active:bg-red-800 mr-8 sm:mr-6 lg:mr-8 ">
                                                     <x-delete-icon></x-delete-icon>
                                                 </x-primary-button>
                                             </form>
