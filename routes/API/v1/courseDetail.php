@@ -7,7 +7,7 @@ Route::middleware(['auth:sanctum','akses:mobile'])
 ->prefix('course-details')
 ->name('courseDetail.')
 ->group(function () {
-    Route::get('/',[CourseDetailController::class,'index'])->name('get');
-    Route::post('/create',[CourseDetailController::class,'store'])->name('post');
-    Route::patch('/{cd_id}/edit',[CourseDetailController::class,'update'])->name('patch');
+    Route::get('/',[CourseDetailController::class,'index'])->name('api.get.courseDetail');
+    Route::post('/create',[CourseDetailController::class,'store'])->name('api.post.courseDetail');
+    Route::patch('/{cd_id}/edit',[CourseDetailController::class,'update'])->name('api.patch.courseDetail');
 });

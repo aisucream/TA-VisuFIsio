@@ -160,7 +160,8 @@
                                     <tr>
                                         <th class="px-6 py-3 bg-gray-50 text-left">
                                             <span
-                                                class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Docter</span>
+                                                class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nama
+                                                Evaluator</span>
                                         </th>
                                         <th class="px-6 py-3 bg-gray-50 text-left">
                                             <span
@@ -168,13 +169,13 @@
                                         </th>
                                         <th class="px-6 py-3 bg-gray-50 text-left">
                                             <span
-                                                class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Description</span>
+                                                class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Deskripsi
+                                            </span>
                                         </th>
                                         <th class="px-6 py-3 bg-gray-50 text-left">
                                             <span
                                                 class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Status</span>
                                         </th>
-
                                         <th class="px-6 py-3 bg-gray-50 text-left">
                                             <span
                                                 class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Action</span>
@@ -182,8 +183,8 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                                    <tr class="bg-white">
-                                        @foreach ($course->courseEvaluation as $evaluation)
+                                    @foreach ($course->courseEvaluation()->paginate(2) as $evaluation)
+                                        <tr>
                                             <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
                                                 {{ $evaluation->user->name }}
                                             </td>
@@ -197,7 +198,6 @@
                                                 {{ $evaluation->status }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
-
                                                 @if (auth()->user()->userDesc->roles !== 'pasien')
                                                     <form
                                                         action="{{ route('evaluation.destroy', ['id' => $evaluation->id]) }}"
@@ -213,18 +213,23 @@
                                                     </form>
                                                 @endif
                                             </td>
-                                        @endforeach
-                                    </tr>
-                                @else
-                                    <div class="flex items-center justify-center ">
-                                        <div class="text-center bg-red-500 rounded-lg w-full">
-                                            <h1 class=" font-semibold  text-2xl  m-6 text-white ">Create Your Evaluation
-                                            </h1>
-                                        </div>
-                                    </div>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+
+                            <div class="my-5">
+                                {{ $course->courseEvaluation()->paginate(2)->onEachSide(2)->links() }}
+                            </div>
+                        @else
+                            <div class="flex items-center justify-center ">
+                                <div class="text-center bg-red-500 rounded-lg w-full">
+                                    <h1 class="font-semibold text-2xl m-6 text-white">There is no evaluation for this
+                                        Course</h1>
+                                </div>
+                            </div>
                         @endif
-                        </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
@@ -241,7 +246,6 @@
                 <h1 class=" font-semibold  text-2xl mt-3 ">Data Not Found</h1>
             </div>
         </div>
-
     @endif
 
 

@@ -25,7 +25,7 @@ class CourseDetailController extends Controller
 
         foreach ($datas as $data) {
             $validator = Validator::make($data, [
-                'course_id' => 'required|integer',
+                'course_id' => 'required|integer|exists:courses,id',
                 'duration' => 'required|numeric',
                 'position' => 'required|numeric',
                 'vout' => 'required|numeric',
@@ -43,8 +43,9 @@ class CourseDetailController extends Controller
                     'status'=> false,
                     'message'=> 'Failed to add Data',
                     'errors'=> $validator->errors()
-                ],400);
+                ],404);
             }
+
 
             CourseDetail::create([
                 'course_id' => $data['course_id'],

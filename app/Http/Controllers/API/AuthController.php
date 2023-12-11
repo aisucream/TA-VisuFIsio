@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -60,10 +61,10 @@ class AuthController extends Controller
     {
         $datauser = new User();
         $rules = [
-            "name"=>"required",
-            "email"=> "required|email|unique:users,email",
-            "password"=> "required",
-            "type" => "required|in:web,mobile",
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'min:8','regex:/\d+/'],
+            'type' => ['required','string','in:mobile,web'],
         ];
 
         $validator = Validator::make($request->all(), $rules);

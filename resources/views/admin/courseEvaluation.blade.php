@@ -13,14 +13,14 @@
                 <x-input-label for="code" :value="__('Course Code')" />
                 <x-text-input id="code" class="block mt-1 w-full" type="text" name="code" :value="old('code')"
                     required autofocus autocomplete="code" value='{{ $course->code }}' readonly />
-                <x-input-error :messages="$errors->get('notes')" class="mt-2" />
+                <x-input-error :messages="$errors->get('code')" class="mt-2" />
             </div>
 
             <div class="mt-4">
-                <x-input-label for="notes" :value="__('Course Patient')" />
-                <x-text-input id="notes" class="block mt-1 w-full" type="text" name="notes" :value="old('notes')"
+                <x-input-label for="patient" :value="__('Course Patient')" />
+                <x-text-input id="patient" class="block mt-1 w-full" type="text" name="notes" :value="old('patient')"
                     required autofocus autocomplete="notes" value='{{ $course->user->name }}' readonly />
-                <x-input-error :messages="$errors->get('notes')" class="mt-2" />
+                <x-input-error :messages="$errors->get('patient')" class="mt-2" />
             </div>
         </div>
 
@@ -45,11 +45,11 @@
             </div>
 
             <div class="mt-4">
-                <x-input-label for="notes" :value="__('Description')" />
+                <x-input-label for="description" :value="__('Description')" />
                 <textarea name="description" id="description" cols="10" rows="10"
                     class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full"></textarea>
+                <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
-
 
         </div>
         <x-link class=" bg-gray-400  hover:bg-gray-500 text-black"

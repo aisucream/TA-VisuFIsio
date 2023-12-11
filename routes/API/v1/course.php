@@ -8,8 +8,8 @@ Route::middleware(['auth:sanctum','akses:mobile'])
 ->prefix('courses')
 ->name('course.')
 ->group(function () {
-    Route::get('/', [CourseController::class,'index'])->name('get');
-    Route::post('/create', [CourseController::class,'store'])->name('post');
-    Route::patch('/{c_id}/edit', [CourseController::class,'update'])->name('patch');
+    Route::get('/', [CourseController::class,'index'])->name('api.get.course');
+    Route::post('/create', [CourseController::class,'store'])->name('api.post.course');
+    Route::patch('/{c_id}/edit', [CourseController::class,'update'])->name('api.patch.course');
 });
 
