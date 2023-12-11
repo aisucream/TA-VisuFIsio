@@ -24,10 +24,11 @@ class CourseController extends Controller
         $dataLatihan = new Course;
 
         $rules = [
-            'code' => 'required',
-            'start_time' => 'date',
-            'end_time'=> 'date',
+            'code' => 'required|max:255',
+            'start_time' => 'required|date|date_format:Y/m/d H:i:s',
+            'end_time' => 'required|date|date_format:Y/m/d H:i:s|after:start_time',
         ];
+        
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return response()->json([

@@ -71,10 +71,10 @@
                                         @endif
 
                                         <td
-                                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900 grid grid-cols-2 gap-3">
+                                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900 flex justify-start items-center">
 
                                             <x-link
-                                                class="bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800  "
+                                                class="bg-blue-500 hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800  mr-4 "
                                                 title="Detail" href="{{ route('account.show', ['id' => $item->id]) }}">
                                                 <x-detail-icon> </x-detail-icon> Detail
                                             </x-link>

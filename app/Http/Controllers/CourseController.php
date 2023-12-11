@@ -84,14 +84,13 @@ class CourseController extends Controller
         $user = Auth::user();
 
         return view('admin.courseEvaluation', compact('course','user'));
-
     }
 
         public function evaluationpost(Request $request, $id){
 
         $request->validate([
-            'notes' => ['required', 'string'],
-            'description' => ['required', 'string'],
+            'notes' => ['required', 'string', 'max:250'],
+            'description' => ['required', 'string','max:1500'],
             'status' => ['required']
         ]); 
 
