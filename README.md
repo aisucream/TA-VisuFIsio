@@ -20,8 +20,8 @@ POST /api/v1/register
 | Parameter | Type     | Description                                        |
 | :-------- | :------- | :-----------------------------------------------   |
 | `name`    | `string` | **Required**. Name `example:Jhon Doe`              |
-| `email`   | `string` | **Required**. Email `example:jhondhoe@example.com` |
-| `password`| `string` | **Required**. Password `example:jhondoe123`        |
+| `email`   | `email` | **Required**. Email `example:jhondhoe@example.com` |
+| `password`| `string` | **Required. min:8 , must contain number.**  Password  `example:jhondoe123`        |
 
 ### **Body** (JSON Content)
 ```json
@@ -100,6 +100,16 @@ POST /api/v1/login
     "message": "Email atau Password Tidak Sesuai"
 }
 ```
+## 2. Logout 
+```http
+GET /api/v1/logout
+```
+### Request Header
+|Key        | Value                                                       | Description                       |
+| :-------- | :---------------------------------------------------------- | :-------------------------------- |
+| `Token`   | `Bearer 4Eq0CJc2Wlqx6OAsz65zxn0yvpXbMGxxaTrfBDmZJ8dc72547`  | **Required**. Token from login    |
+| `Accept`   | `application/json`  | **Required**.    |
+
 
 ## 3. Show All Course 
 ```http
@@ -115,19 +125,9 @@ GET /api/v1/courses
 #### 200 OK
 ```json
 {
-        "succes": true,
-        "massage": "Menampilkan Data Course",
-        "code": [
-            {
-                "id": 1,
-                "code": "Rebor-001",
-                "user_id": 1,
-                "start_time": "2023-04-10 00:00:00",
-                "end_time": "2023-04-10 00:00:00",
-                "created_at": "2023-11-09T19:46:58.000000Z",
-                "updated_at": "2023-11-16T18:35:02.000000Z"
-            }
-        ]
+    "status": true,
+    "message": "Logout Sucessfuly",
+    "user": null
 }
 ```
 #### 401 UNAUTHORIZED
