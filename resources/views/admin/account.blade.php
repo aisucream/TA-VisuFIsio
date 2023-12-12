@@ -78,18 +78,10 @@
                                                 title="Detail" href="{{ route('account.show', ['id' => $item->id]) }}">
                                                 <x-detail-icon> </x-detail-icon> Detail
                                             </x-link>
-
-                                            <form action="{{ route('account.delete', ['id' => $item->id]) }}"
-                                                method="post">
-                                                @csrf
-                                                @method('delete')
-
-                                                <x-primary-button
-                                                    class="bg-red-500 hover:bg-red-700 focus:bg-red-700 active:bg-red-800 ">
-                                                    <x-delete-icon></x-delete-icon>
-                                                </x-primary-button>
-                                            </form>
-
+                                            <x-danger-button x-data=""
+                                                x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
+                                                <x-delete-icon></x-delete-icon>
+                                            </x-danger-button>
                                         </td>
 
                                     </tr>
@@ -104,6 +96,34 @@
                             </div>
                         </table>
                     @endif
+
+                    <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                        <form method="post" action="{{ route('account.delete', ['id' => $item->id]) }}" class="p-6">
+                            @csrf
+                            @method('delete')
+
+                            <div class="m-5">
+                                <h2 class="text-lg font-medium text-gray-900">
+                                    {{ __('Are you sure you want to delete this account?') }}
+                                </h2>
+
+                                <p class="mt-1 text-sm text-gray-600">
+                                    {{ __('Once Account is deleted, all of its resources and data will be permanently deleted. ') }}
+                                </p>
+
+                                <div class="mt-6 flex justify-end">
+                                    <x-secondary-button x-on:click="$dispatch('close')">
+                                        {{ __('Cancel') }}
+                                    </x-secondary-button>
+
+                                    <x-danger-button class="ms-3">
+                                        {{ __('Delete Course') }}
+                                    </x-danger-button>
+                                </div>
+                            </div>
+                        </form>
+                    </x-modal>
+
 
                     <div class="my-5">
                         {{ $data->onEachSide(5)->links() }}
