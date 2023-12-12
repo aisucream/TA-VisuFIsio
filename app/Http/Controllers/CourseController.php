@@ -69,13 +69,20 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, Request $request)
     {
-      $course = Course::findOrFail($id);
+        $request->validateWithBag('userDeletion', [
+            'password' => ['required', 'current_password'],
+        ]);
+        $course = Course::findOrFail($id);
+        $user = $request->user();
 
-      $course->delete();
-      return redirect()->route('dashboard');
+        if ($user !== false) {
+            
+            $course->delete();
+            return redirect()->route('dashboard')->with('success', 'Course deleted successfully');
 
+        }
     }
 
     public function evaluation(string $id){
@@ -90,7 +97,7 @@ class CourseController extends Controller
 
         $request->validate([
             'notes' => ['required', 'string', 'max:250'],
-            'description' => ['required', 'string','max:1500'],
+            'description' => ['required', 'string','max:1000'],
             'status' => ['required']
         ]); 
 
@@ -109,13 +116,21 @@ class CourseController extends Controller
 
     }
 
-    public function evaluationdelete(string $id){
+    public function evaluationdelete(string $id, Request $request){
 
-        $evaluate = CourseEvaluation::findOrFail($id);
+        $request->validateWithBag('userDeletion', [
+            'password' => ['required', 'current_password'],
+        ]);
 
-        $evaluate->delete();
+        $user = $request->user();
 
-        return redirect()->route('course.detail',['id' => $evaluate->course_id]);
+        if($user !== false){
+            
+            $evaluate = CourseEvaluation::findOrFail($id);
 
+            $evaluate->delete();
+
+            return redirect()->route('course.detail',['id' => $evaluate->course_id]);
+        }
     }
 }

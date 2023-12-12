@@ -22,6 +22,12 @@ class CourseDetailController extends Controller
     public function store(Request $request)
     {
         $datas = $request->data;
+        if($datas == null){
+            return response()->json([
+                'status'=> false,
+                'message'=> 'Failed to add data is null',
+            ],400);
+        }
 
         foreach ($datas as $data) {
             $validator = Validator::make($data, [
@@ -43,7 +49,7 @@ class CourseDetailController extends Controller
                     'status'=> false,
                     'message'=> 'Failed to add Data',
                     'errors'=> $validator->errors()
-                ],404);
+                ],400);
             }
 
 

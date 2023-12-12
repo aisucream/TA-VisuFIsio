@@ -4,7 +4,7 @@ use App\Http\Controllers\CourseController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('userAkses:admin,dokter,fisioterapis')
+Route::middleware('userAkses:fisioterapis,admin,dokter')
 ->prefix('dashboard')
 ->group(function () {
     Route::delete('/course/{id}/delete', [CourseController::class,'destroy'])->name('course.delete');

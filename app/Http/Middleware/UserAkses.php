@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserAkses
@@ -13,14 +14,21 @@ class UserAkses
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $roles): Response
+    public function handle(Request $request, Closure $next, ...$roles ): Response
     {
-        $user = auth()->user();
-        if ($user && $user->userDesc->roles == $roles) {
-            return $next($request);
-        }
+       
+    $userRoles = Auth::user()->userDesc->roles;
 
-        abort(403,"Unauthorized");
+    if (!is_array($userRoles)) {
+        $userRoles = [$userRoles];
+    }
+    
+    if (Auth::check() && count(array_intersect($userRoles, $roles)) > 0) {
+        return $next($request);
+    }
+
+
+    abort(401, 'Unauthorized');
       
     }
 }
