@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('course_evaluations', function (Blueprint $table) {
             $table->id();
             $table->foreignID('user_id')->constrained() ->onDelete('cascade');;
-            $table->foreignId('course_id')->constrained();
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
             $table->string('notes');
-            $table->string('description');
+            $table->text('description');
             $table->enum('status', ['Buruk', 'Cukup', 'Baik', 'Sangat Baik'])->nullable();
             $table->timestamps();
         });
