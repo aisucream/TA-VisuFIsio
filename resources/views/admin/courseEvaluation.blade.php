@@ -41,6 +41,7 @@
                 <x-input-label for="notes" :value="__('Evaluation')" />
                 <x-text-input id="notes" class="block mt-1 w-full" type="text" name="notes" :value="old('notes')"
                     required autofocus autocomplete="notes" />
+                <span class="text-gray-500 mt-2">Max 30 word</span>
                 <x-input-error :messages="$errors->get('notes')" class="mt-2" />
             </div>
 
@@ -48,6 +49,7 @@
                 <x-input-label for="description" :value="__('Description')" />
                 <textarea name="description" id="description" cols="10" rows="10"
                     class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full"></textarea>
+                <span class="text-gray-500 mt-2">Max 100 word</span>
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
 

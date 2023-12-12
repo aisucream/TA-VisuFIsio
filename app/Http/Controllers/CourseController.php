@@ -96,8 +96,8 @@ class CourseController extends Controller
         public function evaluationpost(Request $request, $id){
 
         $request->validate([
-            'notes' => ['required', 'string', 'max:250'],
-            'description' => ['required', 'string','max:1000'],
+            'notes' => ['required', 'string', 'max:30'],
+            'description' => ['required', 'string','max:100'],
             'status' => ['required']
         ]); 
 
