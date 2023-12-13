@@ -34,7 +34,7 @@
 
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                 autocomplete="new-password" />
-
+            <span class="text-gray-500 mt-2">Minimum 8 characters and contain number</span>
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
