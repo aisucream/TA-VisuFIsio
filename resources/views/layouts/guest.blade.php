@@ -18,15 +18,15 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
-    <div class=" flex flex-col sm:justify-center items-center   sm:pt-0 bg-gray-100">
-        <div>
-            <a href="/" class="flex mt-5 mb-4">
-                <x-application-logo class="w-40 h-40  fill-current text-gray-500" />
+    <div class="min-h-screen flex flex-col sm:justify-center items-center  px-10 py-10 sm:pt-0 bg-gray-100">
+        <div class="mt-5">
+            <a href="/" class="flex">
+                <x-application-logo class="w-40 h-40 fill-current text-gray-500" />
                 <p class="text-4xl font-extrabold  text-blue-950">VisuFisio</p>
             </a>
         </div>
 
-        <div class="w-full  max-w-xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        <div class="w-full sm:max-w-2xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             {{ $slot }}
         </div>
     </div>
