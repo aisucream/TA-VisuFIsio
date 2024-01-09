@@ -24,7 +24,7 @@ class CourseController extends Controller
         $dataLatihan = new Course;
 
         $rules = [
-            'code' => 'required|max:255',
+            'code' => 'required|max:30|regex:/^REBOT-\d{4}$/',
             'start_time' => 'required|date|date_format:Y/m/d H:i:s',
             'end_time' => 'required|date|date_format:Y/m/d H:i:s|after:start_time',
         ];

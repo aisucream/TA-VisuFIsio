@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'role' => ['required', 'string', 'in:fisioterapis,dokter,admin,pasien'],
-            'no_telp' => ['required', 'string', 'max:12','min:12'],
+            'no_telp' => ['required', 'string', 'regex:/^[0-9]{12}$/', 'min:12','max:12'],
         ]);
 
         $pengguna = User::findOrFail($id);

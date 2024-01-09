@@ -50,7 +50,7 @@
                             Exercises Duration:
                         </label>
                         <p class="text-xl text-gray-700">
-                            {{ $course->courseDetail->last()->duration }} minutes
+                            {{ round($course->courseDetail->last()->duration / 60) }} minutes
                         </p>
                     </div>
 
@@ -128,7 +128,7 @@
                             Maximum Plantarflexion:
                         </label>
                         <p class="text-xl text-gray-700">
-                            {{ $courseDetails->last()->plantarmax }}° degrees
+                            {{ max(0, $courseDetails->last()->plantarmax) }}° degrees
                         </p>
                     </div>
 

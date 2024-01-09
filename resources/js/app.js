@@ -9,8 +9,8 @@ window.Alpine = Alpine;
 Alpine.start();
 
 document.addEventListener("DOMContentLoaded", function () {
-    const ctx = document.getElementById("vout").getContext("2d");
-    new Chart(ctx, {
+    const voutCtx = document.getElementById("vout").getContext("2d");
+    new Chart(voutCtx, {
         type: "line",
         data: {
             labels: Array.from({ length: voutData.length }, (_, i) => i + 1),
@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     borderColor: "rgba(75, 192, 192, 1)",
                     borderWidth: 1,
                     fill: false,
+                    pointRadius: 0,
                 },
             ],
         },
@@ -36,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const ctx = document.getElementById("position").getContext("2d");
-    new Chart(ctx, {
+    const positionCtx = document.getElementById("position").getContext("2d");
+    new Chart(positionCtx, {
         type: "line",
         data: {
             labels: Array.from({ length: pvalue.length }, (_, i) => i + 1),
@@ -48,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     borderColor: "rgba(75, 192, 192, 1)",
                     borderWidth: 1,
                     fill: false,
+                    pointRadius: 0,
                 },
             ],
         },
