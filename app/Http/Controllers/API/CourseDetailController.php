@@ -32,16 +32,16 @@ class CourseDetailController extends Controller
         foreach ($datas as $data) {
             $validator = Validator::make($data, [
                 'course_id' => 'required|integer|exists:courses,id',
-                'duration' => 'required|numeric',
-                'position' => 'required|numeric',
+                'duration' => 'required|numeric|min:0',
+                'position' => 'required|numeric|min:0',
                 'vout' => 'required|numeric',
-                'dorsimax' => 'required|numeric',
+                'dorsimax' => 'required|numeric|min:0',
                 'plantarmax' => 'required|numeric',
-                'rom' => 'required|numeric',
-                'percentage' => 'required|numeric',
-                'step_amount' => 'required|numeric',
-                'step_duration' => 'required|numeric',
-                'step_per_second' => 'required|numeric',
+                'rom' => 'required|numeric|min:0',
+                'percentage' => 'required|numeric|min:0',
+                'step_amount' => 'required|numeric|min:0',
+                'step_duration' => 'required|numeric|min:0',
+                'step_per_second' => 'required|numeric|min:0',
             ]);
 
             if ($validator->fails()) {
@@ -70,7 +70,7 @@ class CourseDetailController extends Controller
 
         return new APIResource(true, 'Displays Data Details', $datas);
     }
-
+// hmm
     public function update(Request $request, $cd_id)
     {
         $datas = $request->data;
@@ -78,16 +78,16 @@ class CourseDetailController extends Controller
         foreach ($datas as $data) {
             $validator = Validator::make($data, [
                 'course_id' => 'required|integer',
-                'duration' => 'required|numeric',
-                'position' => 'required|numeric',
-                'vout' => 'required|numeric',
-                'dorsimax' => 'required|numeric',
-                'plantarmax' => 'required|numeric',
-                'rom' => 'required|numeric',
-                'percentage' => 'required|numeric',
-                'step_amount' => 'required|numeric',
-                'step_duration' => 'required|numeric',
-                'step_per_second' => 'required|numeric',
+                'duration' => 'required|numeric|min:0',
+                'position' => 'required|numeric|min:0',
+                'vout' => 'required|numeric|min:0',
+                'dorsimax' => 'required|numeric|min:0',
+                'plantarmax' => 'required|numeric|min:0',
+                'rom' => 'required|numeric|min:0',
+                'percentage' => 'required|numeric|min:0',
+                'step_amount' => 'required|numeric|min:0',
+                'step_duration' => 'required|numeric|min:0',
+                'step_per_second' => 'required|numeric|min:0',
             ]);
 
             if ($validator->fails()) {

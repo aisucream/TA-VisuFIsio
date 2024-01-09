@@ -24,7 +24,7 @@
             <x-input-label for="password" :value="__('New Password')" />
             <x-text-input id="password" name="password" type="password" class="mt-1 block w-full"
                 autocomplete="new-password" />
-            <span class="text-gray-500 mt-2">Minimum 8 characters and contain number</span>
+            <span class="text-gray-500 mt-2">Min 8 characters and contain number</span>
             <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
         </div>
 
