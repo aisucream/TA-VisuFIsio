@@ -55,7 +55,7 @@ class RegisteredUserController extends Controller
             'roles' => $request->role,
             'no_telp' => $request->no_telp,
         ]);
-
+// oke
         return redirect('dashboard');
     }
 

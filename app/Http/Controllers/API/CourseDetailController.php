@@ -70,7 +70,7 @@ class CourseDetailController extends Controller
 
         return new APIResource(true, 'Displays Data Details', $datas);
     }
-
+// hmm
     public function update(Request $request, $cd_id)
     {
         $datas = $request->data;

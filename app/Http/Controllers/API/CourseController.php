@@ -38,7 +38,7 @@ class CourseController extends Controller
             ],400);  
         }
 
-     
+    //  lah
         $dataLatihan->code = $request->code;
         $dataLatihan->user_id = Auth::user()->id;
         $dataLatihan->start_time = $request->start_time;

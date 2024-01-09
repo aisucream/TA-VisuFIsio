@@ -47,7 +47,7 @@
 
                     <div class="p-6 bg-white mt-3 rounded-lg">
                         <label class="block font-medium text-2xl text-green-800">
-                            Exercises Duration:
+                            Exercises Duration :
                         </label>
                         <p class="text-xl text-gray-700">
                             {{ round($course->courseDetail->last()->duration / 60) }} minutes
@@ -56,7 +56,7 @@
 
                     <div class="p-6 bg-white mt-3 rounded-lg">
                         <label class="block font-medium text-2xl text-green-800">
-                            Number of Steps:
+                            Number of Steps :
                         </label>
                         <p class="text-xl text-gray-700">
                             {{ $courseDetails->last()->step_amount }} steps
@@ -86,7 +86,7 @@
 
                     <div class="p-6 bg-white mt-3 rounded-lg">
                         <label class="block font-medium text-2xl text-green-800">
-                            Range Of Motion:
+                            Range Of Motion :
                         </label>
                         <p class="text-xl text-gray-700">
                             {{ $courseDetails->last()->rom }}° degrees
@@ -104,7 +104,7 @@
 
                     <div class="p-6 bg-white mt-3 rounded-lg">
                         <label class="block font-medium text-2xl text-green-800">
-                            Correct Gait Sequence Presentage:
+                            Correct Gait Sequence Presentage :
                         </label>
                         <p class="text-xl text-gray-700">
                             {{ $courseDetails->last()->percentage }}%
@@ -116,7 +116,7 @@
 
                     <div class="p-6 bg-white mt-3 rounded-lg">
                         <label class="block font-medium text-2xl text-green-800">
-                            Correct Step Duration:
+                            Correct Step Duration :
                         </label>
                         <p class="text-xl text-gray-700">
                             {{ $courseDetails->last()->step_duration }} Second
@@ -134,7 +134,7 @@
 
                     <div class="p-6 bg-white mt-3 rounded-lg">
                         <label class="block font-medium text-2xl text-green-800">
-                            Maximum Dorsiflexion:
+                            Maximum Dorsiflexion :
                         </label>
                         <p class="text-xl text-gray-700">
                             {{ $courseDetails->last()->dorsimax }}° degress
