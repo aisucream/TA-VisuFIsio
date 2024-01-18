@@ -65,16 +65,21 @@ class AccountController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::find($id);
         $protectedUserIds = [1, 2]; 
-        
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect()->route('account')->with('error', 'User not found.');
+        }
+
         if (in_array($user->id, $protectedUserIds)) {
             return redirect()->route('account')->with('error', 'This user cannot be deleted.');
         }
 
+        // Soft delete user
         $user->delete();
 
-        return redirect()->route('account')->with('success', 'User deleted successfully.');
+        return redirect()->route('account')->with('success', 'User deactivated successfully.');
 
     }
 }

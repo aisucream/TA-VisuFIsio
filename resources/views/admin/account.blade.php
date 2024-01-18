@@ -117,7 +117,7 @@
                                     </x-secondary-button>
 
                                     <x-danger-button class="ms-3">
-                                        {{ __('Delete Course') }}
+                                        {{ __('Delete Account') }}
                                     </x-danger-button>
                                 </div>
                             </div>
